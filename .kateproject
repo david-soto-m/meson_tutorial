@@ -1,9 +1,0 @@
-{
-"name": "meson_tutorial",
-"files": [ { "git": 1 } ],
-"index":true,
-"build":{
-    "directory": "builddir",
-    "build": "meson compile",
-    }
-}

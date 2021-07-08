@@ -1,12 +1,8 @@
-// Copyright: Not a thing I wanna do
-
 #include <gtk/gtk.h>
 
-static void print_hello(GtkWidget *widget, gpointer data) {
-    g_print("Hello Horrible World\n");
-}
+#include "print.h"
 
-static void activate(GtkApplication *app, gpointer user_data) {
+void activate(GtkApplication *app, gpointer user_data) {
     GtkWidget *window;
     GtkWidget *button;
     GtkWidget *box;
@@ -18,7 +14,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
     box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_window_set_child(GTK_WINDOW(window), box);
 
-    button = gtk_button_new_with_label("Hello idiot World");
+    button = gtk_button_new_with_label("Hello World");
     g_signal_connect(button, "clicked", G_CALLBACK(print_hello), NULL);
     g_signal_connect_swapped(
         button,
@@ -27,16 +23,4 @@ static void activate(GtkApplication *app, gpointer user_data) {
         window);
     gtk_box_append(GTK_BOX(box), button);
     gtk_widget_show(window);
-}
-
-int main(int argc, char **argv) {
-    GtkApplication *app;
-    int status;
-
-    app = gtk_application_new("Idiot", G_APPLICATION_FLAGS_NONE);
-    g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
-    status = g_application_run(G_APPLICATION(app), argc, argv);
-    g_object_unref(app);
-
-    return status;
 }
